@@ -13,24 +13,32 @@
             font-weight: bold;
             margin-bottom: 20px;
         }
+        .tickets {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
 
 <div class="booking-id" id="bookingID"></div>
+<div class="tickets" id="numTickets"></div>
 <div>Please show this ID while entering the event.</div>
 
 <script>
-    // Function to get the booking ID from the URL parameters
-    function getBookingID() {
+    // Function to get the booking ID and number of tickets from the URL parameters
+    function getBookingInfo() {
         const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get('bookingID');
+        const bookingID = urlParams.get('bookingID');
+        const numTickets = urlParams.get('numTickets');
+        return { bookingID, numTickets };
     }
 
-    // Display the booking ID on the page
-    const bookingID = getBookingID();
-    if (bookingID) {
+    // Display the booking ID and number of tickets on the page
+    const { bookingID, numTickets } = getBookingInfo();
+    if (bookingID && numTickets) {
         document.getElementById('bookingID').textContent = "Booking ID: " + bookingID;
+        document.getElementById('numTickets').textContent = "Number of Tickets: " + numTickets;
     } else {
         document.getElementById('bookingID').textContent = "Invalid Booking ID";
     }
