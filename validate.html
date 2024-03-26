@@ -1,43 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>QR Code Page</title>
-    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <title>Booking ID Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .booking-id {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
-<body style="margin-top: 50px;"> <!-- Adjust margin-top as needed -->
+<body>
 
-<div style="margin-left: 10%; margin-right: 10%;">
-    <div style="margin-left:1%;color:#2E90CC;font-size:2vw;font-weight:600;">20<sup>th</sup> March, 2024</div>
-    <div style="margin-left:1%;color:#C0C0C0;font-size:1.5vw;font-family:Arial;">The Ritz-Carlton, Toronto, 181 Wellington St W Toronto, ON</div>
-    <div style="float:right;margin-right:0.5%;width:50%;height:auto;margin-top:-8%;">
-        <div style="text-align:center;font-size:2em;margin-bottom:-230px;" id="bookingID"></div>
-        <div id="qrcode" style="margin:auto;"></div>
-        <div style="text-align:center;font-size:1.5em;margin-top:10px;">Here's your Booking ID</div>
-    </div>
-</div>
+<div class="booking-id" id="bookingID"></div>
+<div>Please show this ID while entering the event.</div>
 
 <script>
-    function generateRandomNumber() {
-        return Math.floor(1000000000 + Math.random() * 9000000000);
+    // Function to get the booking ID from the URL parameters
+    function getBookingID() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('bookingID');
     }
 
-    function generateQRCode(bookingID) {
-        var qrText = "Booking ID: " + bookingID;
-        new QRCode(document.getElementById("qrcode"), {
-            text: qrText,
-            width: 300,
-            height: 300
-        });
+    // Display the booking ID on the page
+    const bookingID = getBookingID();
+    if (bookingID) {
+        document.getElementById('bookingID').textContent = "Booking ID: " + bookingID;
+    } else {
+        document.getElementById('bookingID').textContent = "Invalid Booking ID";
     }
-
-    // Generate a random 10-digit number
-    var randomNumber = generateRandomNumber();
-
-    // Display the booking ID
-    document.getElementById("bookingID").textContent = "Booking ID: " + randomNumber;
-
-    // Generate QR code with the random number
-    generateQRCode(randomNumber);
 </script>
 
 </body>
