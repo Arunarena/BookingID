@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking ID Validation</title>
+</head>
+<body>
+
+<script>
+    // Parse the booking ID from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const bookingID = urlParams.get('bookingID');
+
+    // Dummy function to validate booking ID
+    function validateBookingID(bookingID) {
+        // Here you can implement your own validation logic
+        // For demonstration purposes, let's assume any 10-digit number is valid
+        return /^\d{10}$/.test(bookingID);
+    }
+
+    // Validate the booking ID
+    const isValid = validateBookingID(bookingID);
+
+    // Display message based on validation result
+    if (isValid) {
+        document.write("<h1>Booking ID Valid</h1>");
+        document.write("<p>Please show this ID to access the event.</p>");
+    } else {
+        document.write("<h1>Invalid Booking ID</h1>");
+        document.write("<p>Sorry, the provided booking ID is invalid.</p>");
+    }
+</script>
+
+</body>
+</html>
