@@ -22,6 +22,7 @@
 <body>
 
 <div class="booking-id" id="bookingID"></div>
+<div class="tickets" id="numTickets"></div>
 <div class="tickets" id="goldTickets"></div>
 <div class="tickets" id="silverTickets"></div>
 <div class="tickets" id="standardTickets"></div>
@@ -32,23 +33,29 @@
     function getBookingInfo() {
         const urlParams = new URLSearchParams(window.location.search);
         const bookingID = urlParams.get('bookingID');
+        const numTickets = urlParams.get('numTickets');
         const goldTickets = urlParams.get('goldTickets');
         const silverTickets = urlParams.get('silverTickets');
         const standardTickets = urlParams.get('standardTickets');
-        return { bookingID, goldTickets, silverTickets, standardTickets };
+        return { bookingID, numTickets, goldTickets, silverTickets, standardTickets };
     }
 
     // Display the booking ID and number of tickets for each ticket type on the page
-    const { bookingID, goldTickets, silverTickets, standardTickets } = getBookingInfo();
-    if (bookingID && goldTickets && silverTickets && standardTickets) {
+    const { bookingID, numTickets, goldTickets, silverTickets, standardTickets } = getBookingInfo();
+    if (bookingID && numTickets) {
         document.getElementById('bookingID').textContent = "Booking ID: " + bookingID;
-        document.getElementById('goldTickets').textContent = "Gold Tickets: " + goldTickets;
-        document.getElementById('silverTickets').textContent = "Silver Tickets: " + silverTickets;
-        document.getElementById('standardTickets').textContent = "Standard Tickets: " + standardTickets;
+        document.getElementById('numTickets').textContent = "Number of Tickets: " + numTickets;
+        
+        // Calculate and display individual ticket counts
+        const remainingTickets = numTickets - (parseInt(goldTickets) + parseInt(silverTickets) + parseInt(standardTickets));
+        document.getElementById('goldTickets').textContent = "Gold Tickets: " + goldTickets + " (+" + remainingTickets + ")";
+        document.getElementById('silverTickets').textContent = "Silver Tickets: " + silverTickets + " (+" + remainingTickets + ")";
+        document.getElementById('standardTickets').textContent = "Standard Tickets: " + standardTickets + " (+" + remainingTickets + ")";
     } else {
         document.getElementById('bookingID').textContent = "Invalid Booking ID";
     }
 </script>
+
 
 
 </body>
