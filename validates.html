@@ -41,22 +41,17 @@
     }
 
     // Display the booking ID and number of tickets for each ticket type on the page
-    const { bookingID, numTickets, goldTickets, silverTickets, standardTickets } = getBookingInfo();
-    if (bookingID && numTickets) {
-        document.getElementById('bookingID').textContent = "Booking ID: " + bookingID;
-        document.getElementById('numTickets').textContent = "Number of Tickets: " + numTickets;
-        
-        // Calculate and display individual ticket counts
-        const remainingTickets = numTickets - (parseInt(goldTickets) + parseInt(silverTickets) + parseInt(standardTickets));
-        document.getElementById('goldTickets').textContent = "Gold Tickets: " + goldTickets + " (+" + remainingTickets + ")";
-        document.getElementById('silverTickets').textContent = "Silver Tickets: " + silverTickets + " (+" + remainingTickets + ")";
-        document.getElementById('standardTickets').textContent = "Standard Tickets: " + standardTickets + " (+" + remainingTickets + ")";
-    } else {
-        document.getElementById('bookingID').textContent = "Invalid Booking ID";
-    }
+   const { bookingID, numTickets, goldTickets, silverTickets, standardTickets } = getBookingInfo();
+if (bookingID && numTickets) {
+    document.getElementById('bookingID').textContent = "Booking ID: " + bookingID;
+    document.getElementById('numTickets').textContent = "Number of Tickets: " + numTickets;
+    document.getElementById('goldTickets').textContent = "Gold Tickets: " + goldTickets;
+    document.getElementById('silverTickets').textContent = "Silver Tickets: " + silverTickets;
+    document.getElementById('standardTickets').textContent = "Standard Tickets: " + standardTickets;
+} else {
+    document.getElementById('bookingID').textContent = "Invalid Booking ID";
+}
+
 </script>
-
-
-
 </body>
 </html>
