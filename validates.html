@@ -8,6 +8,7 @@
             text-align: center;
             margin-top: 50px;
             color: #ddd; /* Lighter text color */
+            background-image: url("https://www.transparenttextures.com/patterns/debut-light.png"); /* Light background image */
         }
         header {
             font-size: 2.5em;
@@ -30,7 +31,6 @@
         }
         /* Additional styles */
         .tickets {
-            
             padding: 10px; /* Add padding for better readability */
             border-radius: 5px; /* Rounded corners */
         }
@@ -59,22 +59,6 @@
 <div class="footer">Please show this ID while entering the event.</div>
 
 <script>
-    // Function to get a random background image URL
-    function getRandomBackgroundImage() {
-        const backgrounds = [
-            'url("https://source.unsplash.com/random/1600x900")',
-            'url("https://source.unsplash.com/random/1600x900/?nature")',
-            'url("https://source.unsplash.com/random/1600x900/?city")',
-            'url("https://source.unsplash.com/random/1600x900/?landscape")'
-            // Add more image URLs as needed
-        ];
-        const randomIndex = Math.floor(Math.random() * backgrounds.length);
-        return backgrounds[randomIndex];
-    }
-
-    // Set random background image to the body
-    document.body.style.backgroundImage = getRandomBackgroundImage();
-
     // Function to get the booking ID and number of tickets for each ticket type from the URL parameters
     function getBookingInfo() {
         const urlParams = new URLSearchParams(window.location.search);
