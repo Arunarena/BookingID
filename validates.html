@@ -22,27 +22,34 @@
 <body>
 
 <div class="booking-id" id="bookingID"></div>
-<div class="tickets" id="numTickets"></div>
+<div class="tickets" id="goldTickets"></div>
+<div class="tickets" id="silverTickets"></div>
+<div class="tickets" id="standardTickets"></div>
 <div>Please show this ID while entering the event.</div>
 
 <script>
-    // Function to get the booking ID and number of tickets from the URL parameters
+    // Function to get the booking ID and number of tickets for each ticket type from the URL parameters
     function getBookingInfo() {
         const urlParams = new URLSearchParams(window.location.search);
         const bookingID = urlParams.get('bookingID');
-        const numTickets = urlParams.get('numTickets');
-        return { bookingID, numTickets };
+        const goldTickets = urlParams.get('goldTickets');
+        const silverTickets = urlParams.get('silverTickets');
+        const standardTickets = urlParams.get('standardTickets');
+        return { bookingID, goldTickets, silverTickets, standardTickets };
     }
 
-    // Display the booking ID and number of tickets on the page
-    const { bookingID, numTickets } = getBookingInfo();
-    if (bookingID && numTickets) {
+    // Display the booking ID and number of tickets for each ticket type on the page
+    const { bookingID, goldTickets, silverTickets, standardTickets } = getBookingInfo();
+    if (bookingID && goldTickets && silverTickets && standardTickets) {
         document.getElementById('bookingID').textContent = "Booking ID: " + bookingID;
-        document.getElementById('numTickets').textContent = "Number of Tickets: " + numTickets;
+        document.getElementById('goldTickets').textContent = "Gold Tickets: " + goldTickets;
+        document.getElementById('silverTickets').textContent = "Silver Tickets: " + silverTickets;
+        document.getElementById('standardTickets').textContent = "Standard Tickets: " + standardTickets;
     } else {
         document.getElementById('bookingID').textContent = "Invalid Booking ID";
     }
 </script>
+
 
 </body>
 </html>
