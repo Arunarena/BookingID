@@ -7,51 +7,90 @@
             font-family: Arial, sans-serif;
             text-align: center;
             margin-top: 50px;
+            color: #ddd; /* Lighter text color */
+        }
+        header {
+            font-size: 2.5em;
+            font-weight: bold;
+            padding: 50px;
+            margin-bottom: 20px;
+            color: #ddd; /* Darker color for header */
         }
         .booking-id {
             font-size: 2em;
             font-weight: bold;
+            padding: 10px;
             margin-bottom: 20px;
+            color: #ddd; /* Slightly darker color for booking ID */
         }
         .tickets {
             font-size: 1.5em;
             margin-bottom: 20px;
+            color: #ddd; /* Lighter color for tickets */
+        }
+        /* Additional styles */
+        .tickets {
+            
+            padding: 10px; /* Add padding for better readability */
+            border-radius: 5px; /* Rounded corners */
+        }
+        .tickets:not(:last-child) {
+            margin-bottom: 10px; /* Reduce margin between ticket types */
+        }
+        .footer {
+            font-size: 1.2em;
+            margin-top: 50px;
+            color: #ddd; /* Lighter color for footer */
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+            padding: 10px; /* Add padding for better readability */
+            border-radius: 5px; /* Rounded corners */
         }
     </style>
+
 </head>
 <body>
 
+<header>EVENT MANAGEMENT TICKETS</header>
 <div class="booking-id" id="bookingID"></div>
 <div class="tickets" id="numTickets"></div>
 <div class="tickets" id="goldTickets"></div>
 <div class="tickets" id="silverTickets"></div>
 <div class="tickets" id="standardTickets"></div>
-<div>Please show this ID while entering the event.</div>
+<div class="footer">Please show this ID while entering the event.</div>
 
 <script>
+    // Function to get a random background image URL
+    function getRandomBackgroundImage() {
+        const backgrounds = [
+            'url("https://source.unsplash.com/random/1600x900")',
+            'url("https://source.unsplash.com/random/1600x900/?nature")',
+            'url("https://source.unsplash.com/random/1600x900/?city")',
+            'url("https://source.unsplash.com/random/1600x900/?landscape")'
+            // Add more image URLs as needed
+        ];
+        const randomIndex = Math.floor(Math.random() * backgrounds.length);
+        return backgrounds[randomIndex];
+    }
+
+    // Set random background image to the body
+    document.body.style.backgroundImage = getRandomBackgroundImage();
+
     // Function to get the booking ID and number of tickets for each ticket type from the URL parameters
     function getBookingInfo() {
         const urlParams = new URLSearchParams(window.location.search);
         const bookingID = urlParams.get('bookingID');
         const numTickets = urlParams.get('numTickets');
-        const goldTickets = urlParams.get('goldTickets');
-        const silverTickets = urlParams.get('silverTickets');
-        const standardTickets = urlParams.get('standardTickets');
-        return { bookingID, numTickets, goldTickets, silverTickets, standardTickets };
+        return { bookingID, numTickets };
     }
 
     // Display the booking ID and number of tickets for each ticket type on the page
-   const { bookingID, numTickets, goldTickets, silverTickets, standardTickets } = getBookingInfo();
-if (bookingID && numTickets) {
-    document.getElementById('bookingID').textContent = "Booking ID: " + bookingID;
-    document.getElementById('numTickets').textContent = "Number of Tickets: " + numTickets;
-    document.getElementById('goldTickets').textContent = "Gold Tickets: " + goldTickets;
-    document.getElementById('silverTickets').textContent = "Silver Tickets: " + silverTickets;
-    document.getElementById('standardTickets').textContent = "Standard Tickets: " + standardTickets;
-} else {
-    document.getElementById('bookingID').textContent = "Invalid Booking ID";
-}
-
+    const { bookingID, numTickets, goldTickets, silverTickets, standardTickets } = getBookingInfo();
+    if (bookingID && numTickets) {
+        document.getElementById('bookingID').textContent = "Booking ID: " + bookingID;
+        document.getElementById('numTickets').textContent = "Number of Tickets: " + numTickets;
+    } else {
+        document.getElementById('bookingID').textContent = "Invalid Booking ID";
+    }
 </script>
 </body>
 </html>
