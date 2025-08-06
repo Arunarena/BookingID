@@ -48,7 +48,6 @@
 
 <header>EVENT MANAGEMENT TICKETS</header>
 <div class="booking-id" id="bookingID"></div>
-<div class="tickets" id="numTickets"></div>
 <div class="tickets" id="goldTickets"></div>
 <div class="tickets" id="silverTickets"></div>
 <div class="tickets" id="standardTickets"></div>
@@ -59,24 +58,21 @@
     function getBookingInfo() {
         const urlParams = new URLSearchParams(window.location.search);
         const bookingID = urlParams.get('bookingID');
-        const numTickets = urlParams.get('numTickets');
         const goldTickets = urlParams.get('goldTickets');
         const silverTickets = urlParams.get('silverTickets');
         const standardTickets = urlParams.get('standardTickets');
-        return { bookingID, numTickets, goldTickets, silverTickets, standardTickets };
+        return { bookingID, goldTickets, silverTickets, standardTickets };
     }
 
     // Display the booking ID and number of tickets for each ticket type on the page
-    const { bookingID, numTickets, goldTickets, silverTickets, standardTickets } = getBookingInfo();
-    if (bookingID && numTickets) {
+    const { bookingID, goldTickets, silverTickets, standardTickets } = getBookingInfo();
+    if (bookingID) {
         document.getElementById('bookingID').textContent = "Booking ID: " + bookingID;
-        document.getElementById('numTickets').textContent = "Total Tickets: " + numTickets;
         document.getElementById('goldTickets').textContent = "Gold Tickets: " + (goldTickets || 0);
         document.getElementById('silverTickets').textContent = "Silver Tickets: " + (silverTickets || 0);
         document.getElementById('standardTickets').textContent = "Standard Tickets: " + (standardTickets || 0);
     } else {
         document.getElementById('bookingID').textContent = "Invalid Booking ID";
-        document.getElementById('numTickets').textContent = "";
         document.getElementById('goldTickets').textContent = "";
         document.getElementById('silverTickets').textContent = "";
         document.getElementById('standardTickets').textContent = "";
