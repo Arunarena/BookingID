@@ -7,46 +7,42 @@
             font-family: Arial, sans-serif;
             text-align: center;
             margin-top: 50px;
-            color: #ddd; /* Lighter text color */
-            background-image: url("https://img.freepik.com/premium-photo/full-frame-shot-empty-black-background_1048944-1663069.jpg"); /* Light background image */
+            color: #ddd;
+            background-image: url("https://img.freepik.com/premium-photo/full-frame-shot-empty-black-background_1048944-1663069.jpg");
         }
         header {
             font-size: 2.5em;
             font-weight: bold;
             padding: 50px;
             margin-bottom: 20px;
-            color: #ddd; /* Darker color for header */
+            color: #ddd;
         }
         .booking-id {
             font-size: 2em;
             font-weight: bold;
             padding: 10px;
             margin-bottom: 20px;
-            color: #ddd; /* Slightly darker color for booking ID */
+            color: #ddd;
         }
         .tickets {
             font-size: 1.5em;
             margin-bottom: 20px;
-            color: #ddd; /* Lighter color for tickets */
-        }
-        /* Additional styles */
-        .tickets {
-            padding: 10px; /* Add padding for better readability */
-            border-radius: 5px; /* Rounded corners */
+            color: #ddd;
+            padding: 10px;
+            border-radius: 5px;
         }
         .tickets:not(:last-child) {
-            margin-bottom: 10px; /* Reduce margin between ticket types */
+            margin-bottom: 10px;
         }
         .footer {
             font-size: 1.2em;
             margin-top: 50px;
-            color: #ddd; /* Lighter color for footer */
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
-            padding: 10px; /* Add padding for better readability */
-            border-radius: 5px; /* Rounded corners */
+            color: #ddd;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
         }
     </style>
-
 </head>
 <body>
 
@@ -64,16 +60,26 @@
         const urlParams = new URLSearchParams(window.location.search);
         const bookingID = urlParams.get('bookingID');
         const numTickets = urlParams.get('numTickets');
-        return { bookingID, numTickets };
+        const goldTickets = urlParams.get('goldTickets');
+        const silverTickets = urlParams.get('silverTickets');
+        const standardTickets = urlParams.get('standardTickets');
+        return { bookingID, numTickets, goldTickets, silverTickets, standardTickets };
     }
 
     // Display the booking ID and number of tickets for each ticket type on the page
     const { bookingID, numTickets, goldTickets, silverTickets, standardTickets } = getBookingInfo();
     if (bookingID && numTickets) {
         document.getElementById('bookingID').textContent = "Booking ID: " + bookingID;
-        document.getElementById('numTickets').textContent = "Number of Tickets: " + numTickets;
+        document.getElementById('numTickets').textContent = "Total Tickets: " + numTickets;
+        document.getElementById('goldTickets').textContent = "Gold Tickets: " + (goldTickets || 0);
+        document.getElementById('silverTickets').textContent = "Silver Tickets: " + (silverTickets || 0);
+        document.getElementById('standardTickets').textContent = "Standard Tickets: " + (standardTickets || 0);
     } else {
         document.getElementById('bookingID').textContent = "Invalid Booking ID";
+        document.getElementById('numTickets').textContent = "";
+        document.getElementById('goldTickets').textContent = "";
+        document.getElementById('silverTickets').textContent = "";
+        document.getElementById('standardTickets').textContent = "";
     }
 </script>
 </body>
