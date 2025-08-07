@@ -44,6 +44,7 @@
         }
     </style>
 </head>
+<div id="qrcode" style="margin: 30px auto;"></div>
 <body>
 
 <header>EVENT MANAGEMENT TICKETS</header>
@@ -76,7 +77,18 @@
         document.getElementById('goldTickets').textContent = "";
         document.getElementById('silverTickets').textContent = "";
         document.getElementById('standardTickets').textContent = "";
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+    if (bookingID) {
+        // Prepare the QR content (encode booking info)
+        const qrContent = `BookingID: ${bookingID}\nGold: ${goldTickets || 0}\nSilver: ${silverTickets || 0}\nStandard: ${standardTickets || 0}`;
+        // Generate the QR code
+        new QRCode(document.getElementById("qrcode"), {
+            text: qrContent,
+            width: 180,
+            height: 180
     }
 </script>
 </body>
 </html>
+
